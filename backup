@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [ $# -ne 2 ]
+then
+	echo "You need to specify <source> and <destination>!"
+	echo "Please try again!"
+	exit 1
+fi
+
+if ! command -v rsync > /dev/null 
+then
+	echo "You need to install rsync! Check your packet manger!"
+	exit 2
+fi
+
+current_date=$(date +%Y-%m-%d)
+
+rsync_options="-avb --backup-dir $2/$current_date --delete --dry-run"
+
+$(which rsync) $rsync_options $1 $2/current >> backup_$current_date.log
+

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+weather=$(curl -s --max-time 9 wttr.in/"YOUR_LOCATION"?format="%C+%t\n")
+
+if [[ -z $weather || $weather == "Unknown location"* ]] 
+then	
+	echo "No weather for now :("
+else
+	echo $weather
+fi

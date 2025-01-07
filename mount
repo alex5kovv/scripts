@@ -1,0 +1,32 @@
+#!/bin/bash
+
+list=$(/usr/bin/lsblk -l | awk '/part $/ {print $1, $4}')
+
+if [ -z "$list" ]
+then
+	echo "No mountable devices available!"
+	exit 0
+else
+	echo "Partitions available to mount:"
+	echo "$list"
+fi
+	
+echo "Enter the name of the device:"
+read name
+ 
+echo "Enter the device type:"
+read device
+
+if ! [ -d /mnt/$device ]
+then
+	sudo mkdir /mnt/$device
+fi
+
+sudo mount /dev/$name /mnt/$device 2> /dev/null
+
+if [ $? -eq 0 ]
+then
+	echo "Your $device has been mounted on /mnt/$device!"
+else
+	echo "An error has occured! Check if you entered the name correctly!"
+fi

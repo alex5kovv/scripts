@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if ! command -v sensors
+then
+	echo "You need to install lm_sensors!"
+	exit 1
+fi
+
+cputemp=$(sensors | awk '/^Package id 0:/ {print $4}' | sed 's/+//')
+
+memuse=$(free -h | awk '/^Mem:/ {print $3}' | cut -c-4)
+
+echo $cputemp $memuse

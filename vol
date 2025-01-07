@@ -1,0 +1,16 @@
+#!/bin/bash
+
+num=${2:-5}
+
+output="> /dev/null"
+
+case $1 in
+	toggle) amixer sset Master toggle $output;;
+	mute) amixer sset Master mute $output;;
+	up) amixer sset Master $num%+ $output;;
+	down) amixer sset Master $num%- $output;;
+	*) echo "Please enter <up> <down> <toggle> or <mute>!"
+		exit 1;;
+esac
+
+echo $(amixer get Master | awk '/]$/ {print $4, $6}')

@@ -1,0 +1,33 @@
+#!/bin/bash
+
+export DISPLAY=:0
+
+monitor="YOUR_MONITOR" #Run xrandr to check
+
+if [ $# -ne 1 ] && [ $# -ne 2 ]
+then
+	echo "Please enter brightness level <1-10> only, or add <night> for night shift mode!"
+	exit 1
+fi
+
+if ! command -v xrandr > /dev/null
+then
+	echo "You need to install xrandr! Check your packet manager!"
+	exit 2
+fi
+
+if [ "$1" = 10 ]
+then
+	percent="1"
+else
+	percent="0.$1"
+fi
+
+if [ "$2" = night ]
+then
+	gamma="1.0:0.95:0.85"
+else
+	gamma="1.0:1.0:1.0"
+fi
+
+$(which xrandr) --output $monitor --brightness $percent --gamma $gamma
