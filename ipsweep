@@ -1,0 +1,18 @@
+#!/bin/bash
+
+count=1
+
+if [ $# -ne 1 ]
+then
+	echo "Enter a valid subnet!"
+	exit 1
+fi
+ 
+while [ $count -lt 255 ] 
+do
+	ping $1.$count -c 1 | awk "/^64 bytes/" | cut -d " " -f 4 | sed 's/://' &  
+	((count++))
+done
+
+sleep 2
+echo "Sweep completed!"
