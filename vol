@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#For alsa only!
+
 num=${2:-5}
 
 output="> /dev/null"
