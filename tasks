@@ -1,0 +1,14 @@
+#!/bin/bash
+
+file="documents/tasks.txt"
+
+case $1 in
+	list) cat "$file";;
+	add) echo "$2 $3" >> "$file";;
+	check) grep "$2" "$file";;
+	remove) sed -i "/^$2/d" "$file";;
+	*) echo "<list> to list all tasks"
+	   echo "<add date task> to add a new task"
+	   echo "<check date> to check a task for a specified date"
+ 	   echo "<remove date> to remove a task for a specified date";;
+esac
