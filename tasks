@@ -1,6 +1,6 @@
 #!/bin/bash
 
-file="documents/tasks.txt"
+file="YOUR_TASK_FILE"
 
 case $1 in
 	list) cat "$file";;
