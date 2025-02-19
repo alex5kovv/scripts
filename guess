@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# A guessing game
+
+count=1
+random=$((RANDOM %101))
+echo "Guess the number!"
+echo "Please input your guess:"
+read guess
+
+while [ $guess -ne $random ]
+
+do 
+    if [ $guess -gt $random ]
+    then
+        echo "Too high!"
+    fi
+
+    if [ $guess -lt $random ]
+    then
+        echo "Too low!"
+    fi
+
+    count=$((count+1))
+    echo "Please input your guess:"
+    read guess
+done 
+
+echo "You are correct!"
+echo "You took $count tries to complete it!"
