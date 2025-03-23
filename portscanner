@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "Enter an IP address:"
+read address
+
+echo "Enter a port:"
+read port
+
+nmap -sT $address -p $port >/dev/null -oG scan0
+
+grep "open" scan0 > scan 
+
+cat scan 

@@ -4,7 +4,7 @@ count=1
 
 if [ $# -ne 1 ]
 then
-	echo "Enter a valid subnet!"
+	echo "Enter the first 3 octets of an IP address!"
 	exit 1
 fi
  
@@ -14,5 +14,5 @@ do
 	((count++))
 done
 
-sleep 2
+sleep 1
 echo "Sweep completed!"
